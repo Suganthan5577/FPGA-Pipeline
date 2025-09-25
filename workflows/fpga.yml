@@ -1,0 +1,21 @@
+name: FPGA Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/open-source-fpga-tools/icestorm:latest  # prebuilt FPGA toolchain
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build FPGA Bitstream
+        run: |
+          make  # or quartus_sh --flow compile <project>.qpf
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: fpga-bitstream
+          path: output_files/*.sof
