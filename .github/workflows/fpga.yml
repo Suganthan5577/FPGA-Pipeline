@@ -3,20 +3,15 @@ name: FPGA Pipeline
 on: [push, pull_request]
 
 jobs:
-  build:
+  upload:
     runs-on: ubuntu-latest
-    container: ghcr.io/open-source-fpga-tools/icestorm:latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build FPGA Bitstream
-        run: |
-          make  # or quartus_sh --flow compile <project>.qpf
-
-      - name: Upload Artifacts
+      - name: Upload FPGA Bitstream
         uses: actions/upload-artifact@v3
         with:
           name: fpga-bitstream
-          path: output_files/*.sof
+          path: bitstreams/*.sof
