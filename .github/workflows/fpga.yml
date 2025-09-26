@@ -1,20 +1,20 @@
 name: FPGA Pipeline
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main" ]
 
 jobs:
-  upload:
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: List repo contents
-        run: ls -R
+      - name: Build Docker image
+        run: docker build -t fpga-pipeline .
 
-      - name: Upload FPGA Bitstream
-        uses: actions/upload-artifact@v4
+      - name: Upload bitstream artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: fpga-bitstream
-          path: bitstreams/Vhdl1.sof
+          name: rca_bitstream
+          path: bitstreams/*.sof
