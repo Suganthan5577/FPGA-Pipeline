@@ -7,14 +7,15 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Build Docker image
         run: docker build -t fpga-pipeline .
 
       - name: Upload bitstream artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: rca_bitstream
           path: bitstreams/*.sof
