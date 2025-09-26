@@ -2,9 +2,9 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
  
-entity testbench is
--- empty
-end testbench; 
+entity half_adder_tb is
+end half_adder_tb;
+
 
 architecture tb of testbench is
 

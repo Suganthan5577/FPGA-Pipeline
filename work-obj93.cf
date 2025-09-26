@@ -1,7 +1,13 @@
 v 4
-file . "Vhdl1_tb.vhd" "719d134c4d6c14c8add8fbde306c664bd9d4dadc" "20250926071825.858":
-  entity vhdl1_tb at 1( 0) + 0 on 13;
-  architecture sim of vhdl1_tb at 8( 111) + 0 on 14;
+file . "half_adder.vhdl" "673944d2cd67e43e60b9abab2693c51b7715ff20" "20250926085244.656":
+  entity half_adder at 1( 0) + 0 on 19;
+  architecture behavioral of half_adder at 13( 231) + 0 on 20;
 file . "Vhdl1.vhd" "508e5d63a92e1c442e70192b6c27ae416d67158a" "20250926071825.833":
   entity vhdl1 at 1( 0) + 0 on 11;
   architecture behavioral of vhdl1 at 15( 460) + 0 on 12;
+file . "Vhdl1_tb.vhd" "719d134c4d6c14c8add8fbde306c664bd9d4dadc" "20250926071825.858":
+  entity vhdl1_tb at 1( 0) + 0 on 13;
+  architecture sim of vhdl1_tb at 8( 111) + 0 on 14;
+file . "half_adder_tb.vhdl" "6d1bb157669ab83b8b36f9c3559048ce5b551c95" "20250926084755.562":
+  entity testbench at 2( 26) + 0 on 17;
+  architecture tb of testbench at 9( 124) + 0 on 18;
