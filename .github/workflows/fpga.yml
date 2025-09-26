@@ -14,4 +14,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: fpga-bitstream
-          path: bitstreams/*.sof
+          path: bitstreams/Vhdl1.sof
