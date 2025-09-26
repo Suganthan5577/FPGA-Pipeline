@@ -1,55 +1,27 @@
--- Testbench for OR gate
 library IEEE;
-use IEEE.std_logic_1164.all;
- 
+use IEEE.STD_LOGIC_1164.ALL;
+
 entity half_adder_tb is
 end half_adder_tb;
 
-
-architecture tb of testbench is
-
--- DUT component
-component or_gate is
-port(
-  a: in std_logic;
-  b: in std_logic;
-  q: out std_logic);
-end component;
-
-signal a_in, b_in, q_out: std_logic;
-
+architecture behavior of half_adder_tb is
+    signal A, B  : std_logic := '0';
+    signal Sum, Cout : std_logic;
 begin
+    uut: entity work.half_adder
+        port map (
+            A => A,
+            B => B,
+            Sum => Sum,
+            Cout => Cout
+        );
 
-  -- Connect DUT
-  DUT: or_gate port map(a_in, b_in, q_out);
-
-  process
-  begin
-    a_in <= '0';
-    b_in <= '0';
-    wait for 1 ns;
-    assert(q_out='0') report "Fail 0/0" severity error;
-  
-    a_in <= '0';
-    b_in <= '1';
-    wait for 1 ns;
-    assert(q_out='1') report "Fail 0/1" severity error;
-
-    a_in <= '1';
-    b_in <= 'X';
-    wait for 1 ns;
-    assert(q_out='1') report "Fail 1/X" severity error;
-
-    a_in <= '1';
-    b_in <= '1';
-    wait for 1 ns;
-    assert(q_out='1') report "Fail 1/1" severity error;
-    
-    -- Clear inputs
-    a_in <= '0';
-    b_in <= '0';
-
-    assert false report "Test done." severity note;
-    wait;
-  end process;
-end tb;
+    stim_proc: process
+    begin
+        A <= '0'; B <= '0'; wait for 10 ns;
+        A <= '0'; B <= '1'; wait for 10 ns;
+        A <= '1'; B <= '0'; wait for 10 ns;
+        A <= '1'; B <= '1'; wait for 10 ns;
+        wait;
+    end process;
+end behavior;
