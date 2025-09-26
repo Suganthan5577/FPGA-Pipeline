@@ -1,9 +1,8 @@
 FROM ubuntu:20.04
 
-# Install dependencies including GHDL + GTKWave
+# Install only GHDL (minimal simulation setup)
 RUN apt-get update && apt-get install -y \
-    ghdl gtkwave make gcc gnat \
-    libx11-6 libxext6 libxft2 libxi6 libxrender1 libxtst6 \
+    ghdl \
     && rm -rf /var/lib/apt/lists/*
 
 # Set workspace
