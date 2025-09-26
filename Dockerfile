@@ -1,10 +1,16 @@
-# Minimal runtime image
 FROM ubuntu:20.04
 
-WORKDIR /app
+# Install dependencies including GHDL + GTKWave
+RUN apt-get update && apt-get install -y \
+    ghdl gtkwave make gcc gnat \
+    libx11-6 libxext6 libxft2 libxi6 libxrender1 libxtst6 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy your prebuilt bitstream into container
-COPY bitstreams/*.sof /app/
+# Set workspace
+WORKDIR /workspace
 
-# Default action: list contents so you can check bitstream exists
-CMD ["ls", "-lh", "/app"]
+# Copy your design + testbench
+COPY Vhdl1.vhd .
+COPY Vhdl1_tb.vhd .
+
+CMD ["/bin/bash"]
