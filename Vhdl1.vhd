@@ -10,7 +10,7 @@ entity vhdl1 is
         Sum  : out STD_LOGIC_VECTOR(3 downto 0); -- Sum
         Cout : out STD_LOGIC                      -- Carry Out
     );
-end vhdl1;  -- ✅ must match entity name
+end vhdl1;  -- must match entity name
 
 architecture Behavioral of vhdl1 is
     signal C : STD_LOGIC_VECTOR(4 downto 0);
