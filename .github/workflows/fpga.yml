@@ -26,12 +26,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # 🔹 Prepare lowercase image name
+      - name: Prepare image name
+        id: prep
+        run: echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY,,}:latest" >> $GITHUB_ENV
+
       - name: Build and push Docker image to GHCR
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ${{ env.IMAGE }}
           file: ./Dockerfile
 
       - name: Upload bitstream artifact (if present)
